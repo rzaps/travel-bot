@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+
+# Environment variables
+.env
+.env.*
+
+# Logs
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Backup files
+*~
+
+# Node.js (если вдруг есть фронтенд)
+node_modules/
+
+# Output
+/dist/
+/build/
+
+# Misc
+*.bak
+
+# Ignore test cache
+.pytest_cache/
+
+# Ignore coverage reports
+.coverage
+htmlcov/
+.coverage.*
+
+# Ignore compiled C extensions
+*.so
+
+# Ignore migrations (если используются)
+migrations/ 
