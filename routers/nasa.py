@@ -9,7 +9,7 @@ nasa_router = Router()
 @nasa_router.callback_query(F.data == "space")
 async def handle_space(callback: CallbackQuery):
     try:
-        apod = get_random_apod()
+        apod = await get_random_apod()
         photo_url = apod["url"]
         title = apod["title"]
         explanation = apod["explanation"]
@@ -23,7 +23,7 @@ async def handle_space(callback: CallbackQuery):
 @nasa_router.callback_query(F.data == "nasa_again")
 async def handle_nasa_again(callback: CallbackQuery):
     try:
-        apod = get_random_apod()
+        apod = await get_random_apod()
         photo_url = apod["url"]
         title = apod["title"]
         explanation = apod["explanation"]

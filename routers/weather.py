@@ -24,10 +24,10 @@ async def ask_city(callback: CallbackQuery, state: FSMContext):
 async def process_city(message: Message, state: FSMContext):
     city = message.text
     user_id = message.from_user.id
-    full_name = message.from_user.full_name
+    name = message.from_user.full_name
 
     # Сохраняем данные в БД
-    save_user(user_id, full_name, city)
+    save_user(user_id, name, city)
 
     await message.answer(f"✅ Город <b>{city}</b> сохранён!", parse_mode="HTML")
 
@@ -55,15 +55,15 @@ async def back_to_menu(callback: CallbackQuery):
 
 # Функция для отправки погоды
 async def send_weather(target, city: str):
-    data = get_weather(city)
-    if not data or data.get("cod") != 200:
+    data = await get_weather(city)
+    if not data:
         await target.answer(
             f"Не удалось получить погоду для {city}",
             reply_markup=weather_refresh_keyboard(city)
         )
         return
-    temp = data['main']['temp']
-    desc = data['weather'][0]['description'].capitalize()
+    temp = data['temp']
+    desc = data['description'].capitalize()
     await target.answer(
         f"🌤 Погода в {city}: {temp}°C, {desc}",
         reply_markup=weather_refresh_keyboard(city)

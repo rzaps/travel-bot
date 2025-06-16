@@ -8,7 +8,8 @@ async def get_main_menu():
     keyboard_main =InlineKeyboardBuilder()
     keyboard_main.add(
         InlineKeyboardButton(text="🧭 Информация", callback_data="info_menu"),
-                InlineKeyboardButton(text="🎉 Развлечения в дороге", callback_data="fun_menu"),
+                InlineKeyboardButton(text="🎉 Развлечения", callback_data="fun_menu"),
+                InlineKeyboardButton(text="👤 Регистрация", callback_data="registration"),
                 InlineKeyboardButton(text="❓ Что я умею", callback_data="help")
     )
     return keyboard_main.adjust(2).as_markup()
@@ -20,7 +21,9 @@ async def get_info_menu():
                 #InlineKeyboardButton(text="📍 Где я?", callback_data="location"),
                 InlineKeyboardButton(text="☁️ Погода", callback_data="weather"),
                 InlineKeyboardButton(text="🌐 Перевод", callback_data="translate"),
-                #InlineKeyboardButton(text="💱 Валюта", callback_data="currency"),
+                InlineKeyboardButton(text="💱 Валюта", callback_data="currency"),
+                InlineKeyboardButton(text="💰 Финансы", callback_data="finance"),
+                InlineKeyboardButton(text="📊 Статистика расходов", callback_data="show_finance"),
                 InlineKeyboardButton(text="🔙 Назад", callback_data="main_menu")
                  )
     return keyboard.adjust(2).as_markup()
@@ -68,3 +71,12 @@ def weather_refresh_keyboard(city: str):
         InlineKeyboardButton(text="🔙 Назад", callback_data="main_menu")
      )
      return keyboard.adjust(2).as_markup()
+
+# Кнопки для финансов
+def finance_keyboard():
+    keyboard = InlineKeyboardBuilder()
+    keyboard.add(
+        InlineKeyboardButton(text="📊 Показать статистику", callback_data="show_finance"),
+        InlineKeyboardButton(text="🔙 Назад", callback_data="main_menu")
+    )
+    return keyboard.adjust(2).as_markup()

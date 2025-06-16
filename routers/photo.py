@@ -8,7 +8,7 @@ photo_router = Router()
 # Обработка кнопки "photo"
 @photo_router.callback_query(F.data == "photo")
 async def handle_photo(callback: CallbackQuery):
-    url = get_random_photo()
+    url = await get_random_photo()
     if url:
         await callback.message.delete()
         await callback.message.answer_photo(photo=url, caption="Вот случайное фото", reply_markup = photo_again_keyboard())
@@ -19,7 +19,7 @@ async def handle_photo(callback: CallbackQuery):
 # Обработка кнопки "photo_again"
 @photo_router.callback_query(F.data == "photo_again")
 async def photo_again(callback: CallbackQuery):
-    url = get_random_photo()
+    url = await get_random_photo()
     if url:
         await callback.message.answer_photo(photo=url, caption="Ещё одно фото", reply_markup = photo_again_keyboard())
     else:

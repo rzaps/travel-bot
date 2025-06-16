@@ -12,7 +12,10 @@ from routers.weather import weather_router
 from routers.photo import photo_router
 from routers.translate import translate_router
 from routers.nasa import nasa_router
-# from db.users import init_db  # Функция инициализации БД
+from routers.finance import finance_router
+from routers.currency import currency_router
+from routers.registration import registration_router
+from db.users import init_db  # Функция инициализации БД
 
 # === НАСТРОЙКА ЛОГГЕРА ===
 logging.basicConfig(level=logging.INFO)
@@ -25,7 +28,7 @@ dp = Dispatcher(storage=storage)
 
 async def main():
     # Инициализация базы данных
-    # init_db()
+    init_db()
 
     # Подключение всех роутеров
     dp.include_router(start_router)
@@ -34,6 +37,9 @@ async def main():
     dp.include_router(translate_router)
     dp.include_router(cat_router)
     dp.include_router(nasa_router)
+    dp.include_router(finance_router)
+    dp.include_router(currency_router)
+    dp.include_router(registration_router)
 
     logger.info("Бот запущен")
     # Запуск polling (постоянное получение апдейтов)

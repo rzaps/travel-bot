@@ -35,9 +35,9 @@ cat_router = Router()
 
 @cat_router.callback_query(F.data == "cat")
 async def handle_cat(callback: CallbackQuery):
-    breed_info = get_random_breed()
+    breed_info = await get_random_breed()
     if breed_info:
-        cat_image = get_cat_image(breed_info["id"])
+        cat_image = await get_cat_image(breed_info["id"])
         info = (
             f"🐱 Порода: {breed_info['name']}\n"
             f"📄 Описание: {breed_info['description']}\n"
@@ -54,9 +54,9 @@ async def handle_cat(callback: CallbackQuery):
 
 @cat_router.callback_query(F.data == "cat_again")
 async def cat_again(callback: CallbackQuery):
-    breed_info = get_random_breed()
+    breed_info = await get_random_breed()
     if breed_info:
-        cat_image = get_cat_image(breed_info["id"])
+        cat_image = await get_cat_image(breed_info["id"])
         info = (
             f"🐱 Порода: {breed_info['name']}\n"
             f"📄 Описание: {breed_info['description']}\n"
